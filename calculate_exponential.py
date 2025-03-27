@@ -62,7 +62,7 @@ def plot_movie_distributions(vote_counts: List[float],
 
         # Расширим диапазон, чтобы кривая плавно спадала
         x = np.linspace(0, 8, 500)
-        y = λ * np.exp(-λ * x)
+        y = λ**-1 * np.exp(-x/λ)
 
         # Найдем точку, где кривая становится близкой к нулю
         mask = y > 1e-5
