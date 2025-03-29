@@ -60,19 +60,19 @@ def plot_movie_distributions(vote_counts: List[float],
         λ = movie['lambda']
         scaled_hours = movie['hours'] / 10000
 
-        # Расширим диапазон, чтобы кривая плавно спадала
+
         x = np.linspace(0, 8, 500)
         y = λ**-1 * np.exp(-x/λ)
 
-        # Найдем точку, где кривая становится близкой к нулю
+
         mask = y > 1e-5
         plt.plot(x[mask], y[mask], color=colors[idx], linewidth=2,
                  label=f"{movie['release_date']} (λ={λ:.2e}, Голоса: {movie['votes']:.0f})")
 
-        # Точка релиза
+
         plt.scatter([scaled_hours], [0], color=colors[idx], s=50, edgecolors='black', zorder=5)
 
-        # Вертикальная линия
+
         plt.plot([scaled_hours, scaled_hours], [0, λ * np.exp(-λ * scaled_hours)],
                  color=colors[idx], linestyle='dashed', linewidth=1)
 
